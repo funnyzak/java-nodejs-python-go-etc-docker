@@ -2,3 +2,7 @@
 通用环境Docker封装
 
 包含有：java python node npm yarn java mvn nginx zip wget
+
+## Docker
+
+`docker pull funnyzak/go-java-python-node-etc`
