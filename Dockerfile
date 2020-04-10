@@ -3,9 +3,7 @@ MAINTAINER <Potato> <silenceace@gmail.com>
 
 
 RUN apt-get update
-RUN apt-get install -y git openjdk-8-jdk python curl nginx unzip zip wget
-
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+RUN apt-get install -y git python curl nginx unzip zip wget
 
 
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
@@ -26,3 +24,22 @@ RUN ln -s /opt/apache-maven-3.3.9 /opt/maven
 RUN ln -s /opt/maven/bin/mvn /usr/local/bin
 RUN rm -f /tmp/apache-maven-3.3.9.tar.gz
 ENV MAVEN_HOME /opt/maven
+
+# remove download archive files
+RUN apt-get clean
+
+# set shell variables for java installation
+ENV java_version jdk8u242-b08
+ENV filename OpenJDK8U-jdk_x64_linux_hotspot_8u242b08.tar.gz
+ENV downloadlink https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/$java_version/$filename
+
+# download java, accepting the license agreement
+RUN wget --no-cookies -O /tmp/$filename $downloadlink 
+
+# unpack java
+RUN mkdir /opt/java-oracle && tar -zxf /tmp/$filename -C /opt/java-oracle/
+ENV JAVA_HOME /opt/java-oracle/$java_version
+ENV PATH $JAVA_HOME/bin:$PATH
+
+# configure symbolic links for the java and javac executables
+RUN update-alternatives --install /usr/bin/java java $JAVA_HOME/bin/java 20000 && update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 20000
