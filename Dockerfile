@@ -1,6 +1,8 @@
 FROM golang:1.14.2
 MAINTAINER <Potato> <silenceace@gmail.com>
 
+ENV LANG=C.UTF-8
+
 
 RUN apt-get update
 RUN apt-get install -y git python curl nginx unzip zip wget
