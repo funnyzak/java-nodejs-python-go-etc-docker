@@ -15,13 +15,15 @@ This is a generic runtime environment Docker.
 * java 1.8
 * go 1.12.12
 * python 3.9
-* node 12+
+* node 10.19.0
 * npm 10.19.0
 * yarn 1.16.0
 * mvn 3.39
 * nginx 1.16.1
-* openssh
-* zip
-* wget
-* rsync
+* openssh 8.1
+* zip 3.0
+* tar 1.32
+* wget 1.20.3
+* rsync 3.13
+* git 2.22
 * bash

@@ -29,11 +29,12 @@ ENV java_version jdk8u242-b08
 ENV filename OpenJDK8U-jdk_x64_linux_hotspot_8u242b08.tar.gz
 ENV downloadlink https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/$java_version/$filename
 
-# download java, accepting the license agreement
+# download java
 RUN wget --no-cookies -O /tmp/$filename $downloadlink 
 
 # java env
 RUN mkdir /opt/java-oracle && tar -zxf /tmp/$filename -C /opt/java-oracle/
+RUN rm -f /tmp/$filename
 ENV JAVA_HOME /opt/java-oracle/$java_version
 ENV JRE_HOME=${JAVA_HOME}/jre
 ENV CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
