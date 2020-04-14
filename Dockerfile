@@ -1,7 +1,7 @@
 FROM python:3.9.0a5-alpine3.10
 
 LABEL maintainer="potato<silenceace@gmail.com>" \
-        description="mult env docker"
+        description="general environment"
 
 ENV LANG=C.UTF-8
 
