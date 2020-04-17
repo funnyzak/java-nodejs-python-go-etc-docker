@@ -28,3 +28,14 @@ This is a generic runtime environment Docker.
 * rsync 3.13
 * git 2.22
 * bash
+
+---
+
+## Docker Run
+
+### Nginx
+
+```Docker
+docker run -d -t -i --name nginx --restart always --privileged=true \
+-p 81:80 funnyzak/go-java-python-node-etc nginx -g 'daemon off;'
+```

@@ -9,6 +9,10 @@ ENV LANG=C.UTF-8
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh go rsync npm yarn nodejs curl nginx zip unzip tar wget tzdata && \
     rm  -rf /tmp/* /var/cache/apk/*
+    
+# fixed nginx: [emerg] open() "/run/nginx/nginx.pid" 
+# https://github.com/gliderlabs/docker-alpine/issues/185
+RUN mkdir -p /run/nginx
 
 # Go config
 RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
