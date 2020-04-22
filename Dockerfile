@@ -99,4 +99,9 @@ ENV PATH ${JAVA_HOME}/bin:$PATH
 
 RUN mkdir /app && chmod -R 777 /app
 
+# work dir
 WORKDIR /app
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
