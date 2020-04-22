@@ -1,8 +1,5 @@
 FROM python:3.9.0a5-alpine3.10
 
-ARG BUILD_DATE
-ARG VCS_REF
-
 LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
     org.label-schema.name="java8-nodejs-python-go-etc" \
     org.label-schema.build-date="${BUILD_DATE}" \
@@ -20,8 +17,7 @@ RUN apk update && apk upgrade && \
     # Install python/make/gcc for gyp compilation.
     apk add --no-cache g++ make && \
     # Install need modules
-    apk add --no-cache bash git openssh go rsync tzdata zip unzip && \
-    apk add --no-cache tar wget curl nodejs yarn npm nginx  && \
+    apk add --no-cache bash git openssh go rsync npm yarn nodejs curl nginx zip unzip tar wget tzdata && \
     rm  -rf /tmp/* /var/cache/apk/*
     
 # fixed nginx: [emerg] open() "/run/nginx/nginx.pid" 
@@ -36,6 +32,43 @@ ENV PATH /go/bin:$PATH
 # Install Go Webhook
 RUN go get github.com/adnanh/webhook
 
+# Here we install GNU libc (aka glibc) . java need modules.
+RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
+    ALPINE_GLIBC_PACKAGE_VERSION="2.31-r0" && \
+    ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    ALPINE_GLIBC_BIN_PACKAGE_FILENAME="glibc-bin-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    ALPINE_GLIBC_I18N_PACKAGE_FILENAME="glibc-i18n-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
+    echo \
+        "-----BEGIN PUBLIC KEY-----\
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZ2u1KJKUu/fW4A25y9m\
+        y70AGEa/J3Wi5ibNVGNn1gT1r0VfgeWd0pUybS4UmcHdiNzxJPgoWQhV2SSW1JYu\
+        tOqKZF5QSN6X937PTUpNBjUvLtTQ1ve1fp39uf/lEXPpFpOPL88LKnDBgbh7wkCp\
+        m2KzLVGChf83MS0ShL6G9EQIAUxLm99VpgRjwqTQ/KfzGtpke1wqws4au0Ab4qPY\
+        KXvMLSPLUp7cfulWvhmZSegr5AdhNw5KNizPqCJT8ZrGvgHypXyiFvvAH5YRtSsc\
+        Zvo9GI2e2MaZyo9/lvb+LbLEJZKEQckqRj4P26gmASrZEPStwc+yqy1ShHLA0j6m\
+        1QIDAQAB\
+        -----END PUBLIC KEY-----" | sed 's/   */\n/g' > "/etc/apk/keys/sgerrand.rsa.pub" && \
+        wget \
+            "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+            "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+            "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
+        apk add --no-cache libstdc++ \
+            "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+            "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+            "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
+        rm "/etc/apk/keys/sgerrand.rsa.pub" && \
+        /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 "$LANG" || true && \
+        echo "export LANG=$LANG" > /etc/profile.d/locale.sh && \
+        \
+        apk del glibc-i18n && \
+        rm "/root/.wget-hsts" && \
+        apk del .build-dependencies && \
+        rm \
+            "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+            "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+            "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
+
 # get maven 3.3.9
 RUN wget --no-verbose -O /tmp/apache-maven-3.3.9.tar.gz http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
 
@@ -45,6 +78,7 @@ RUN ln -s /opt/apache-maven-3.3.9 /opt/maven
 RUN ln -s /opt/maven/bin/mvn /usr/local/bin
 RUN rm -f /tmp/apache-maven-3.3.9.tar.gz
 ENV MAVEN_HOME /opt/maven
+
 
 # set shell variables for java installation
 ENV java_version jdk8u242-b08
