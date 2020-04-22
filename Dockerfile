@@ -1,5 +1,8 @@
 FROM python:3.9.0a5-alpine3.10
 
+ARG BUILD_DATE
+ARG VCS_REF
+
 LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
     org.label-schema.name="java8-nodejs-python-go-etc" \
     org.label-schema.build-date="${BUILD_DATE}" \
@@ -17,7 +20,8 @@ RUN apk update && apk upgrade && \
     # Install python/make/gcc for gyp compilation.
     apk add --no-cache g++ make && \
     # Install need modules
-    apk add --no-cache bash git openssh go rsync npm yarn nodejs curl nginx zip unzip tar wget tzdata && \
+    apk add --no-cache bash git openssh go rsync tzdata zip unzip && \
+    apk add --no-cache tar wget curl nodejs yarn npm nginx  && \
     rm  -rf /tmp/* /var/cache/apk/*
     
 # fixed nginx: [emerg] open() "/run/nginx/nginx.pid" 
