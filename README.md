@@ -34,7 +34,7 @@ This is a generic runtime environment Docker.
 
 ## Docker Run
 
-### Nginx
+### Nginx Run
 
 ```Docker
 docker run -d -t -i --name nginx --restart always --privileged=true \
