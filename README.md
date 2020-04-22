@@ -1,13 +1,13 @@
-# go-java-python-node-etc docker
+# java8-nodejs-python-go-etc docker
 
-[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/go-java-python-node-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/go-java-python-node-etc/)
+[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/go-java-python-node-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/hexo-webhook.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/hexo-webhook/)
 
 This is a generic runtime environment Docker.
 
-#### [Docker hub image: funnyzak/go-java-python-node-etc](https://hub.docker.com/r/funnyzak/go-java-python-node-etc)
+#### [Docker hub image: funnyzak/java8-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc)
 
-#### Pull Command: `docker pull funnyzak/go-java-python-node-etc`
+#### Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
 
 ---
 
@@ -38,5 +38,5 @@ This is a generic runtime environment Docker.
 
 ```Docker
 docker run -d -t -i --name nginx --restart always --privileged=true \
--p 81:80 funnyzak/go-java-python-node-etc nginx -g 'daemon off;'
+-p 81:80 funnyzak/java8-nodejs-python-go-etc nginx -g 'daemon off;'
 ```
