@@ -1,13 +1,17 @@
 # java8-nodejs-python-go-etc docker
 
-[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/go-java-python-node-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/hexo-webhook.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/hexo-webhook/)
+[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java8-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java8-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc/)
 
-This is a generic runtime environment Docker.
+This image is based on Alpine Linux image, which is a 432MB image.
 
-#### [Docker hub image: funnyzak/java8-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc)
+Download size of this image is:
 
-#### Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
+[![](https://images.microbadger.com/badges/image/funnyzak/java8-nodejs-python-go-etc.svg)](http://microbadger.com/images/funnyzak/java8-nodejs-python-go-etc)
+
+[Docker hub image: funnyzak/java8-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc)
+
+Docker Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
 
 ---
 
