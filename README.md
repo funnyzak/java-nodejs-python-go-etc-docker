@@ -27,12 +27,20 @@ Docker Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
 * nginx 1.16.1
 * openssh 8.1
 * zip 3.0
+* unzip
 * tar 1.32
 * wget 1.20.3
+* curl
 * rsync 3.13
 * git 2.22
 * bash
 * webhook [Help](https://github.com/adnanh/webhook)
+
+## Other Modules
+
+* tzdata
+* fc-config
+* msttcorefonts
 
 ---
 
