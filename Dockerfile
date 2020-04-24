@@ -18,6 +18,11 @@ RUN apk update && apk upgrade && \
     apk add --no-cache g++ make && \
     # Install need modules
     apk add --no-cache bash git openssh go rsync npm yarn nodejs curl nginx zip unzip tar wget tzdata && \
+    # Install Font
+    apk add fontconfig msttcorefonts-installer && \
+    update-ms-fonts && \
+    fc-cache -f && \
+    # Remove Apk Cache
     rm  -rf /tmp/* /var/cache/apk/*
     
 # fixed nginx: [emerg] open() "/run/nginx/nginx.pid" 
