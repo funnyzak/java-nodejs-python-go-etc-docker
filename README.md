@@ -17,30 +17,35 @@ Docker Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
 
 ## Environment
 
+### Main Modules
+
 * java 1.8
 * go 1.12.12
 * python 3.9
-* node 10.19.0
+* nodejs 10.19.0
 * npm 10.19.0
 * yarn 1.16.0
 * mvn 3.39
 * nginx 1.16.1
 * openssh 8.1
 * zip 3.0
-* unzip
+* unzip 6.0
 * tar 1.32
 * wget 1.20.3
-* curl
-* rsync 3.13
+* curl 7.66
+* rsync 3.1.3
 * git 2.22
-* bash
+* bash 5.0.0
 * webhook [Help](https://github.com/adnanh/webhook)
 
-## Other Modules
+### Other Modules
 
 * tzdata
 * fc-config
 * msttcorefonts
+* gcc
+* g++
+* make
 
 ---
 
