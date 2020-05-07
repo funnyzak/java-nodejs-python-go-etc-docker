@@ -110,6 +110,6 @@ WORKDIR /app
 COPY ./entrypoint.sh /
 
 EXPOSE 80
-xing 
+
 # run start script
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
