@@ -107,6 +107,9 @@ RUN mkdir /app && chmod -R 777 /app
 # work dir
 WORKDIR /app
 
-EXPOSE 80
+COPY ./entrypoint.sh /
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 80
+xing 
+# run start script
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
