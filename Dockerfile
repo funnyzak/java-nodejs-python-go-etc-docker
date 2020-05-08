@@ -112,4 +112,4 @@ COPY ./entrypoint.sh /
 EXPOSE 80
 
 # run start script
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+CMD ["/bin/bash", "/cmd.sh"]
