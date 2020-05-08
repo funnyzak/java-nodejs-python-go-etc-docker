@@ -107,7 +107,7 @@ RUN mkdir /app && chmod -R 777 /app
 # work dir
 WORKDIR /app
 
-COPY ./entrypoint.sh /
+COPY ./cmd.sh /
 
 EXPOSE 80
 
