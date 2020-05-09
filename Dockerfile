@@ -17,7 +17,7 @@ RUN apk update && apk upgrade && \
     # Install python/make/gcc for gyp compilation.
     apk add --no-cache g++ make && \
     # Install need modules
-    apk add --no-cache bash git openssh go rsync npm yarn nodejs curl nginx zip unzip tar wget tzdata && \
+    apk add --no-cache bash git openssh go rsync npm yarn nodejs curl nginx zip unzip gzip bzip2 tar wget tzdata && \
     # Install Font
     apk add fontconfig msttcorefonts-installer && \
     update-ms-fonts && \

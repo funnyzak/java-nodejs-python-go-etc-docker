@@ -36,6 +36,8 @@ Docker Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
 * rsync 3.1.3
 * git 2.22
 * bash 5.0.0
+* gzip
+* bzip2
 * webhook [Help](https://github.com/adnanh/webhook)
 
 ### Other Modules
