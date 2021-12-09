@@ -20,13 +20,14 @@ Docker Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
 ### Main Modules
 
 * java 1.8
-* go 1.12.12
-* python 3.9
-* nodejs 10.19.0
+* go 1.17.4
+* python 3.10.1
+* nodejs 16.13.0
+* ossutil64 1.7.7
 * npm 10.19.0
-* yarn 1.16.0
+* yarn 1.22.17
 * mvn 3.39
-* nginx 1.16.1
+* nginx 1.20.21
 * openssh 8.1
 * zip 3.0
 * unzip 6.0

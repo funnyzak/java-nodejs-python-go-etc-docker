@@ -1,9 +1,9 @@
-FROM python:3.9.0a5-alpine3.10
+FROM python:3.10.1-alpine3.15
 
 LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
     org.label-schema.name="java8-nodejs-python-go-etc" \
     org.label-schema.build-date="${BUILD_DATE}" \
-    org.label-schema.description="Java8 mvn3.39 Go1.12 python3.9 node10 npm10 yarn1.16 nginx1.16 openssh zip tar wget rsync git bash webhook" \
+    org.label-schema.description="Java8 mvn3.39 Go1.17.4 python3.10.1 node16.13.0 npm8.1.3 yarn1.22.17 nginx1.20.2 openssh zip tar wget rsync git bash webhook" \
     org.label-schema.url="https://yycc.me" \
     org.label-schema.schema-version="1.0"	\
     org.label-schema.vcs-type="Git" \
@@ -11,6 +11,7 @@ LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
     org.label-schema.vcs-url="https://github.com/funnyzak/java8-nodejs-python-go-etc" 
 
 ENV LANG=C.UTF-8
+ENV OSSUTIL_VERSION=1.7.7
 
 # Install modules
 RUN apk update && apk upgrade && \
@@ -26,7 +27,7 @@ RUN apk update && apk upgrade && \
     fc-cache -f && \
     # Remove Apk Cache
     rm  -rf /tmp/* /var/cache/apk/*
-    
+
 # fixed nginx: [emerg] open() "/run/nginx/nginx.pid" 
 # https://github.com/gliderlabs/docker-alpine/issues/185
 RUN mkdir -p /run/nginx
@@ -35,6 +36,17 @@ RUN mkdir -p /run/nginx
 RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
 ENV GOPATH /go
 ENV PATH /go/bin:$PATH
+
+RUN mkdir -p /mnt/app
+
+# ossutil64
+RUN curl -Lo /mnt/app/ossutil64 http://gosspublic.alicdn.com/ossutil/$OSSUTIL_VERSION/ossutil64          
+
+RUN chmod 755 /mnt/app/ossutil64
+RUN ln -s /mnt/app/ossutil64 /usr/local/bin
+
+ENV PATH /usr/local/bin/ossutil64:$PATH
+
 
 # Install Go Webhook
 RUN go get github.com/adnanh/webhook
@@ -47,34 +59,34 @@ RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases
     ALPINE_GLIBC_I18N_PACKAGE_FILENAME="glibc-i18n-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
     apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     echo \
-        "-----BEGIN PUBLIC KEY-----\
-        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZ2u1KJKUu/fW4A25y9m\
-        y70AGEa/J3Wi5ibNVGNn1gT1r0VfgeWd0pUybS4UmcHdiNzxJPgoWQhV2SSW1JYu\
-        tOqKZF5QSN6X937PTUpNBjUvLtTQ1ve1fp39uf/lEXPpFpOPL88LKnDBgbh7wkCp\
-        m2KzLVGChf83MS0ShL6G9EQIAUxLm99VpgRjwqTQ/KfzGtpke1wqws4au0Ab4qPY\
-        KXvMLSPLUp7cfulWvhmZSegr5AdhNw5KNizPqCJT8ZrGvgHypXyiFvvAH5YRtSsc\
-        Zvo9GI2e2MaZyo9/lvb+LbLEJZKEQckqRj4P26gmASrZEPStwc+yqy1ShHLA0j6m\
-        1QIDAQAB\
-        -----END PUBLIC KEY-----" | sed 's/   */\n/g' > "/etc/apk/keys/sgerrand.rsa.pub" && \
-        wget \
-            "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
-            "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
-            "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
-        apk add --no-cache libstdc++ \
-            "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
-            "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
-            "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
-        rm "/etc/apk/keys/sgerrand.rsa.pub" && \
-        /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 "$LANG" || true && \
-        echo "export LANG=$LANG" > /etc/profile.d/locale.sh && \
-        \
-        apk del glibc-i18n && \
-        rm "/root/.wget-hsts" && \
-        apk del .build-dependencies && \
-        rm \
-            "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
-            "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
-            "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
+    "-----BEGIN PUBLIC KEY-----\
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZ2u1KJKUu/fW4A25y9m\
+    y70AGEa/J3Wi5ibNVGNn1gT1r0VfgeWd0pUybS4UmcHdiNzxJPgoWQhV2SSW1JYu\
+    tOqKZF5QSN6X937PTUpNBjUvLtTQ1ve1fp39uf/lEXPpFpOPL88LKnDBgbh7wkCp\
+    m2KzLVGChf83MS0ShL6G9EQIAUxLm99VpgRjwqTQ/KfzGtpke1wqws4au0Ab4qPY\
+    KXvMLSPLUp7cfulWvhmZSegr5AdhNw5KNizPqCJT8ZrGvgHypXyiFvvAH5YRtSsc\
+    Zvo9GI2e2MaZyo9/lvb+LbLEJZKEQckqRj4P26gmASrZEPStwc+yqy1ShHLA0j6m\
+    1QIDAQAB\
+    -----END PUBLIC KEY-----" | sed 's/   */\n/g' > "/etc/apk/keys/sgerrand.rsa.pub" && \
+    wget \
+    "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+    "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+    "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
+    apk add --no-cache libstdc++ \
+    "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+    "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+    "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
+    rm "/etc/apk/keys/sgerrand.rsa.pub" && \
+    /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 "$LANG" || true && \
+    echo "export LANG=$LANG" > /etc/profile.d/locale.sh && \
+    \
+    apk del glibc-i18n && \
+    rm "/root/.wget-hsts" && \
+    apk del .build-dependencies && \
+    rm \
+    "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+    "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+    "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
 
 # get maven 3.3.9
 RUN wget --no-verbose -O /tmp/apache-maven-3.3.9.tar.gz http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
