@@ -1,17 +1,13 @@
-# java8-nodejs-python-go-etc docker
+# java-nodejs-python-go-etc docker
 
-[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java8-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java8-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc/)
+[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 
 This image is based on Alpine Linux image, which is a 432MB image.
 
-Download size of this image is:
+[Docker hub image: funnyzak/java-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc)
 
-[![](https://images.microbadger.com/badges/image/funnyzak/java8-nodejs-python-go-etc.svg)](http://microbadger.com/images/funnyzak/java8-nodejs-python-go-etc)
-
-[Docker hub image: funnyzak/java8-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java8-nodejs-python-go-etc)
-
-Docker Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
+Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 
 ---
 
@@ -61,5 +57,5 @@ Docker Pull Command: `docker pull funnyzak/java8-nodejs-python-go-etc`
 
 ```Docker
 docker run -d -t -i --name nginx --restart always --privileged=true \
--p 81:80 funnyzak/java8-nodejs-python-go-etc nginx -g 'daemon off;'
+-p 81:80 funnyzak/java-nodejs-python-go-etc nginx -g 'daemon off;'
 ```
