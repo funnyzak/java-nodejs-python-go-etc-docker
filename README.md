@@ -38,6 +38,7 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 * mysql-client 10.3.22
 * gzip 1.10
 * bzip2 10.06
+* nvm
 * [webhook](https://github.com/adnanh/webhook)
 
 ## Other Modules
@@ -56,18 +57,6 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 ```Docker
 docker run -d -t -i --name nginx --restart always --privileged=true \
 -p 81:80 funnyzak/java-nodejs-python-go-etc nginx -g 'daemon off;'
-```
-
-### Other
-
-```bash
-# change node version
-docker exec jnpge n latest
-docker exec jnpge n latest
-docker exec jnpge n 10.23.1
-docker exec jnpge n 12.22.7
-docker exec jnpge n 14.18.2
-docker exec jnpge n 16.13.1
 ```
 
 ## Other
