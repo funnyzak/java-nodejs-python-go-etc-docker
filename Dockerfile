@@ -31,8 +31,11 @@ RUN apk update && apk upgrade && \
     # Remove Apk Cache
     rm  -rf /tmp/* /var/cache/apk/*
 
-# node version install/change
+# nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh
+
+# nrm
+RUN npm install -g nrm
 
 # fixed nginx: [emerg] open() "/run/nginx/nginx.pid" 
 # https://github.com/gliderlabs/docker-alpine/issues/185

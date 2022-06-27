@@ -39,6 +39,7 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 * gzip 1.10
 * bzip2 10.06
 * nvm
+* nrm
 * [webhook](https://github.com/adnanh/webhook)
 
 ## Other Modules
