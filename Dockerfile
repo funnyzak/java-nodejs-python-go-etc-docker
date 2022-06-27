@@ -21,7 +21,7 @@ RUN apk update && apk upgrade && \
     # Install python/make/gcc for gyp compilation.
     apk add --no-cache g++ make && \
     # Install need modules
-    apk add --no-cache bash git openssh go rsync npm yarn nodejs && \
+    apk add --no-cache bash bash-completion bash-doc git openssh go rsync npm yarn nodejs && \
     apk add --no-cache curl nginx zip unzip gzip bzip2 tar wget tzdata && \
     apk add --no-cache dcron ca-certificates mysql-client && \
     # Install Font
@@ -31,8 +31,23 @@ RUN apk update && apk upgrade && \
     # Remove Apk Cache
     rm  -rf /tmp/* /var/cache/apk/*
 
+
+RUN touch ~/.bashrc && chmod +x ~/.bashrc
+
 # nvm
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh
+ENV NODE_VERSION 16
+
+RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+# install node and npm
+RUN . ~/.nvm/nvm.sh && source ~/.bashrc \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+# confirm installation
+RUN node -v
+RUN npm -v
 
 # nrm
 RUN npm install -g nrm
