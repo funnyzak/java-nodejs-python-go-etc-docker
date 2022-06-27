@@ -10,6 +10,9 @@ LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
     org.label-schema.vcs-ref="${VCS_REF}" \
     org.label-schema.vcs-url="https://github.com/funnyzak/java8-nodejs-python-go-etc" 
 
+# timezone
+ENV TZ Asia/Shanghai
+
 ENV LANG=C.UTF-8
 ENV OSSUTIL_VERSION=1.7.7
 
@@ -28,10 +31,12 @@ RUN apk update && apk upgrade && \
     # Remove Apk Cache
     rm  -rf /tmp/* /var/cache/apk/*
 
+# node version install/change
+RUN npm install -g n 
+
 # fixed nginx: [emerg] open() "/run/nginx/nginx.pid" 
 # https://github.com/gliderlabs/docker-alpine/issues/185
 RUN mkdir -p /run/nginx
-
 
 RUN true \
     # npm china mirrors

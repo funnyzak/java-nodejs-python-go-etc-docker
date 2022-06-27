@@ -13,7 +13,7 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 
 ## Environment
 
-### Main Modules
+## Main Modules
 
 * java 1.8
 * go 1.17.4
@@ -40,7 +40,7 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 * bzip2 10.06
 * webhook [Help](https://github.com/adnanh/webhook)
 
-### Other Modules
+## Other Modules
 
 * tzdata
 * fc-config
@@ -51,11 +51,33 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 
 ---
 
-## Docker Run
+## Run
 
-### Nginx Run
+### Nginx
 
 ```Docker
 docker run -d -t -i --name nginx --restart always --privileged=true \
 -p 81:80 funnyzak/java-nodejs-python-go-etc nginx -g 'daemon off;'
+```
+
+### Other
+
+```bash
+# change node version
+docker exec jnpge n latest
+docker exec jnpge n latest
+docker exec jnpge n 10.23.1
+docker exec jnpge n 12.22.7
+docker exec jnpge n 14.18.2
+docker exec jnpge n 16.13.1
+```
+
+## Other
+
+```bash
+# ossutil64 set
+ossutil64 config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_OSS_AK_SID} -L CH
+
+# osutils64 sync
+ossutil64 sync -f /app/package/  oss://bucket-name/app/package/
 ```
