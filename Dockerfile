@@ -1,164 +1,95 @@
-FROM python:3.10.1-alpine3.15
+FROM debian:stable-20220622
 
-LABEL org.label-schema.vendor="potato<silenceace@gmail.com>" \
-    org.label-schema.name="java8-nodejs-python-go-etc" \
+LABEL maintainer="leon (github.com/funnyzak)"
+
+LABEL org.label-schema.vendor="leon<silenceace@gmail.com>" \
+    org.label-schema.name="java-nodejs-python-go-etc" \
     org.label-schema.build-date="${BUILD_DATE}" \
-    org.label-schema.description="Java8 mvn3.39 Go1.17.4 python3.10.1 node16.13.0 npm8.1.3 yarn1.22.17 nginx1.20.2 openssh zip tar wget rsync git bash webhook" \
+    org.label-schema.description="Common Application Operating Environment" \
     org.label-schema.url="https://yycc.me" \
     org.label-schema.schema-version="1.0"	\
     org.label-schema.vcs-type="Git" \
     org.label-schema.vcs-ref="${VCS_REF}" \
-    org.label-schema.vcs-url="https://github.com/funnyzak/java8-nodejs-python-go-etc" 
+    org.label-schema.vcs-url="https://github.com/funnyzak/java-nodejs-python-go-etc" 
 
 # timezone
 ENV TZ Asia/Shanghai
-
+ENV LC_ALL C.UTF-8
 ENV LANG=C.UTF-8
 ENV OSSUTIL_VERSION=1.7.7
 
+COPY repo/sources.list /etc/apt/sources.list
+
 # Install modules
-RUN apk update && apk upgrade && \
-    # Install python/make/gcc for gyp compilation.
-    apk add --no-cache g++ make && \
+RUN \
+    apt-get update && \
+    apt-get -y upgrade && \
+    # gyp compilation.
+    apt-get install -y g++ gcc make && \
     # Install need modules
-    apk add --no-cache bash bash-completion bash-doc git openssh go rsync npm yarn nodejs && \
-    apk add --no-cache curl nginx zip unzip gzip bzip2 tar wget tzdata && \
-    apk add --no-cache dcron ca-certificates mysql-client && \
-    # Install Font
-    apk add fontconfig msttcorefonts-installer && \
-    update-ms-fonts && \
-    fc-cache -f && \
-    # Remove Apk Cache
-    rm  -rf /tmp/* /var/cache/apk/*
+    apt-get install -y openssl tree bash git rsync npm nodejs vim && \
+    apt-get install -y curl nginx zip unzip gzip bzip2 tar wget tzdata && \
+    # ms fonts
+    apt-get install -y ttf-mscorefonts-installer && \
+    apt-get install -y ca-certificates && \
+    apt-get install -y mariadb-client-10.5 && \
+    # python
+    apt-get install -y python3.9 && \
+    apt-get clean $$ \
+    apt-get autoremove
 
+# nrm yarn n
+RUN npm install -g nrm yarn n
 
-RUN touch ~/.bashrc && chmod +x ~/.bashrc
+# GO
+RUN wget https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
+ENV PATH $PATH:/usr/local/go/bin
 
-# nvm
-ENV NODE_VERSION 16
-
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-# install node and npm
-RUN . ~/.nvm/nvm.sh && source ~/.bashrc \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
-
-# confirm installation
-RUN node -v
-RUN npm -v
-
-# nrm
-RUN npm install -g nrm
-
-# fixed nginx: [emerg] open() "/run/nginx/nginx.pid" 
-# https://github.com/gliderlabs/docker-alpine/issues/185
-RUN mkdir -p /run/nginx
-
-RUN true \
-    # npm china mirrors
-    && npm config set registry https://registry.npm.taobao.org \
-    && npm config set disturl https://npm.taobao.org/dist \
-    && npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass \
-    && npm config set electron_mirror https://npm.taobao.org/mirrors/electron \
-    && npm config set puppeteer_download_host https://npm.taobao.org/mirrors \
-    && npm config set chromedriver_cdnurl https://npm.taobao.org/mirrors/chromedriver \
-    && npm config set operadriver_cdnurl https://npm.taobao.org/mirrors/operadriver \
-    && npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs \
-    && npm config set selenium_cdnurl https://npm.taobao.org/mirrors/selenium
-
-# Go config
 RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
 ENV GOPATH /go
-ENV PATH /go/bin:$PATH
 
-RUN mkdir -p /mnt/app
+# go: go.mod file not found in current directory or any parent directory; see 'go help modules'"
+RUN go env -w GO111MODULE=auto
 
-# ossutil64
-RUN curl -Lo /mnt/app/ossutil64 http://gosspublic.alicdn.com/ossutil/$OSSUTIL_VERSION/ossutil64          
-
-RUN chmod 755 /mnt/app/ossutil64
-RUN ln -s /mnt/app/ossutil64 /usr/local/bin
-
-ENV PATH /usr/local/bin/ossutil64:$PATH
-
-
-# Install Go Webhook
+# # Install Go Webhook
 RUN go get github.com/adnanh/webhook
 
-# Here we install GNU libc (aka glibc) . java need modules.
-RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
-    ALPINE_GLIBC_PACKAGE_VERSION="2.31-r0" && \
-    ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
-    ALPINE_GLIBC_BIN_PACKAGE_FILENAME="glibc-bin-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
-    ALPINE_GLIBC_I18N_PACKAGE_FILENAME="glibc-i18n-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
-    apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
-    echo \
-    "-----BEGIN PUBLIC KEY-----\
-    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZ2u1KJKUu/fW4A25y9m\
-    y70AGEa/J3Wi5ibNVGNn1gT1r0VfgeWd0pUybS4UmcHdiNzxJPgoWQhV2SSW1JYu\
-    tOqKZF5QSN6X937PTUpNBjUvLtTQ1ve1fp39uf/lEXPpFpOPL88LKnDBgbh7wkCp\
-    m2KzLVGChf83MS0ShL6G9EQIAUxLm99VpgRjwqTQ/KfzGtpke1wqws4au0Ab4qPY\
-    KXvMLSPLUp7cfulWvhmZSegr5AdhNw5KNizPqCJT8ZrGvgHypXyiFvvAH5YRtSsc\
-    Zvo9GI2e2MaZyo9/lvb+LbLEJZKEQckqRj4P26gmASrZEPStwc+yqy1ShHLA0j6m\
-    1QIDAQAB\
-    -----END PUBLIC KEY-----" | sed 's/   */\n/g' > "/etc/apk/keys/sgerrand.rsa.pub" && \
-    wget \
-    "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
-    "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
-    "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
-    apk add --no-cache libstdc++ \
-    "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
-    "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
-    "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
-    rm "/etc/apk/keys/sgerrand.rsa.pub" && \
-    /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 "$LANG" || true && \
-    echo "export LANG=$LANG" > /etc/profile.d/locale.sh && \
-    \
-    apk del glibc-i18n && \
-    rm "/root/.wget-hsts" && \
-    apk del .build-dependencies && \
-    rm \
-    "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
-    "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
-    "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
-
-# get maven 3.3.9
-RUN wget --no-verbose -O /tmp/apache-maven-3.3.9.tar.gz http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
-
-# install maven
-RUN tar xzf /tmp/apache-maven-3.3.9.tar.gz -C /opt/
-RUN ln -s /opt/apache-maven-3.3.9 /opt/maven
-RUN ln -s /opt/maven/bin/mvn /usr/local/bin
-RUN rm -f /tmp/apache-maven-3.3.9.tar.gz
-ENV MAVEN_HOME /opt/maven
-
+# ossutil64
+RUN curl -Lo /opt/ossutil http://gosspublic.alicdn.com/ossutil/$OSSUTIL_VERSION/ossutil64          
+RUN chmod 755 /opt/ossutil
+RUN ln -s /opt/ossutil /usr/local/bin
+ENV PATH /usr/local/bin/ossutil:$PATH
 
 # set shell variables for java installation
 ENV java_version jdk8u282-b08
-ENV filename OpenJDK8U-jdk_x64_linux_hotspot_8u282b08.tar.gz
-ENV downloadlink https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/$java_version/$filename
-
+ENV java_package_filename OpenJDK8U-jdk_x64_linux_hotspot_8u282b08.tar.gz
+ENV downloadlink https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/$java_version/$java_package_filename
 # download java
-RUN wget --no-cookies -O /tmp/$filename $downloadlink 
-
-# java env
-RUN mkdir /opt/java-oracle && tar -zxf /tmp/$filename -C /opt/java-oracle/
-RUN rm -f /tmp/$filename
+RUN wget --no-cookies -O /tmp/$java_package_filename $downloadlink 
+# java setting
+RUN mkdir /opt/java-oracle && tar -zxf /tmp/$java_package_filename -C /opt/java-oracle/
+RUN rm -f /tmp/$java_package_filename
 ENV JAVA_HOME /opt/java-oracle/$java_version
 ENV JRE_HOME=${JAVA_HOME}/jre
 ENV CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
 ENV PATH ${JAVA_HOME}/bin:$PATH
 
-
-RUN mkdir /app && chmod -R 777 /app
+# maven
+# get maven 3.3.9
+ENV maven_package_name apache-maven-3.3.9-bin.tar.gz
+ENV maven_package_unzip_name=apache-maven-3.3.9
+RUN wget --no-verbose -O /tmp/${maven_package_name} http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/${maven_package_name}
+# java setting
+RUN tar xzf /tmp/${maven_package_name} -C /opt/
+RUN ln -s /opt/${maven_package_unzip_name} /opt/maven
+RUN ln -s /opt/maven/bin/mvn /usr/local/bin
+RUN rm -f /tmp/${maven_package_name}
+ENV MAVEN_HOME /opt/maven
 
 # work dir
 WORKDIR /app
-
 COPY ./cmd.sh /
-
 EXPOSE 80
 
 # run start script
