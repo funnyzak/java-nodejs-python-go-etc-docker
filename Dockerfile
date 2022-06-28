@@ -33,6 +33,8 @@ RUN \
     apt-get install -y ttf-mscorefonts-installer && \
     apt-get install -y ca-certificates && \
     apt-get install -y mariadb-client-10.5 && \
+    # command ps
+    apt-get install -y procps && \
     # python
     apt-get install -y python3.9 && \
     apt-get clean $$ \
@@ -60,6 +62,12 @@ RUN curl -Lo /opt/ossutil http://gosspublic.alicdn.com/ossutil/$OSSUTIL_VERSION/
 RUN chmod 755 /opt/ossutil
 RUN ln -s /opt/ossutil /usr/local/bin
 ENV PATH /usr/local/bin/ossutil:$PATH
+
+# ossutil env ?
+ENV ALIYUN_OSS_ENDPOINT oss-cn-beijing-internal.aliyuncs.com
+ENV ALIYUN_OSS_AK_ID hello
+ENV ALIYUN_OSS_AK_SID world
+RUN ossutil config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_OSS_AK_SID} -L CH
 
 # set shell variables for java installation
 ENV java_version jdk8u282-b08
