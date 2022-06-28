@@ -15,7 +15,7 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 
 ## Main Modules
 
-* nginx 1.14.1
+* nginx 1.18.0
 * git 2.30.2
 * curl 7.74.0
 * wget 1.21
