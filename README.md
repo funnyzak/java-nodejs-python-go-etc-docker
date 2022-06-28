@@ -1,7 +1,6 @@
 # java-nodejs-python-go-etc docker
 
 [![release](https://github.com/funnyzak/java-nodejs-python-go-etc/actions/workflows/release.yml/badge.svg)](https://github.com/funnyzak/java-nodejs-python-go-etc/actions/workflows/release.yml)
-
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 
