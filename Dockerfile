@@ -41,6 +41,10 @@ RUN \
     apt-get clean $$ \
     apt-get autoremove
 
+# install node 16
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get -y install nodejs
+
 # nrm yarn n
 RUN npm install -g nrm yarn n
 
