@@ -45,14 +45,7 @@ RUN \
 RUN npm install -g nrm yarn n
 
 # GO
-RUN dpkgArch="$(dpkg --print-architecture)"; \
-    case "$dpkgArch" in \
-    arm) export GO_ARCH='arm64' ;; \
-    amd) export GO_ARCH='amd64' ;; \
-    esac;
-# get current architecture
 ARG ARCH=arm64
-
 ENV GO_BINARY_TAR_NAME go${GO_VERSION}.linux-${ARCH}
 ENV GO_BINARY_TAR_DOWNLOAD_LINK https://go.dev/dl/${GO_BINARY_TAR_NAME}.tar.gz
 
