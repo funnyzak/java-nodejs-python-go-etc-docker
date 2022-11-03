@@ -21,13 +21,13 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 * curl 7.74.0
 * wget 1.21
 * nrm 1.2.5
-* ossutil64 1.7.7
-* go 1.18.3
+* ossutil64 1.7.14
+* go 1.18.8
 * java 1.8.0_282
 * mvn 3.3.9
 * python 3.9.2
-* node 12.22.12
-* npm 7.5.2
+* node 16.18.0
+* npm 8.19.2
 * yarn 1.22.19
 * n 8.2.0
 * tar 1.34
