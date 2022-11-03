@@ -17,7 +17,7 @@ ENV TZ Asia/Shanghai
 ENV LC_ALL C.UTF-8
 ENV LANG=C.UTF-8
 ENV OSSUTIL_VERSION=1.7.14
-ENV GO_VERSION=1.93.3
+ENV GO_VERSION=1.18.8
 
 COPY repo/sources.list /etc/apt/sources.list
 
