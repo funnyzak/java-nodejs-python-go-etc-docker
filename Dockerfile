@@ -45,8 +45,7 @@ RUN \
 RUN npm install -g nrm yarn n
 
 # GO
-ARG ARCH=amd64
-ENV GO_BINARY_TAR_NAME go${GO_VERSION}.linux-${ARCH}
+ENV GO_BINARY_TAR_NAME go${GO_VERSION}.linux-amd64
 ENV GO_BINARY_TAR_DOWNLOAD_LINK https://go.dev/dl/${GO_BINARY_TAR_NAME}.tar.gz
 
 RUN wget ${GO_BINARY_TAR_DOWNLOAD_LINK} -O ${GO_BINARY_TAR_NAME}.tar.gz
