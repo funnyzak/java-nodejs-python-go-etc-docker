@@ -7,7 +7,7 @@ LABEL org.label-schema.vendor="leon<silenceace@gmail.com>" \
     org.label-schema.build-date="${BUILD_DATE}" \
     org.label-schema.description="Common Application Operating Environment" \
     org.label-schema.url="https://yycc.me" \
-    org.label-schema.schema-version="1.3.1"	\
+    org.label-schema.schema-version="1.3.2"	\
     org.label-schema.vcs-type="Git" \
     org.label-schema.vcs-ref="${VCS_REF}" \
     org.label-schema.vcs-url="https://github.com/funnyzak/java-nodejs-python-go-etc" 
@@ -47,6 +47,9 @@ RUN apt-get -y install nodejs
 
 # nrm yarn n
 RUN npm install -g nrm yarn n
+
+# install pushoo-cli
+RUN npm install -g pushoo-cli
 
 # GO
 ENV GO_BINARY_TAR_NAME go${GO_VERSION}.linux-amd64
