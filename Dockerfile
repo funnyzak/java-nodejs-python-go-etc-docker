@@ -1,4 +1,4 @@
-FROM debian:stable-20220622
+FROM debian:stable-20221024
 
 LABEL maintainer="leon (github.com/funnyzak)"
 
@@ -7,16 +7,17 @@ LABEL org.label-schema.vendor="leon<silenceace@gmail.com>" \
     org.label-schema.build-date="${BUILD_DATE}" \
     org.label-schema.description="Common Application Operating Environment" \
     org.label-schema.url="https://yycc.me" \
-    org.label-schema.schema-version="1.0"	\
+    org.label-schema.schema-version="1.3.0"	\
     org.label-schema.vcs-type="Git" \
     org.label-schema.vcs-ref="${VCS_REF}" \
     org.label-schema.vcs-url="https://github.com/funnyzak/java-nodejs-python-go-etc" 
 
-# timezone
+# env
 ENV TZ Asia/Shanghai
 ENV LC_ALL C.UTF-8
 ENV LANG=C.UTF-8
-ENV OSSUTIL_VERSION=1.7.7
+ENV OSSUTIL_VERSION=1.7.14
+ENV GO_VERSION=1.93.3
 
 COPY repo/sources.list /etc/apt/sources.list
 
@@ -44,8 +45,19 @@ RUN \
 RUN npm install -g nrm yarn n
 
 # GO
-RUN wget https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf go1.18.3.linux-amd64.tar.gz
+RUN dpkgArch="$(dpkg --print-architecture)"; \
+    case "$dpkgArch" in \
+    arm) export GO_ARCH='arm64' ;; \
+    amd) export GO_ARCH='amd64' ;; \
+    esac;
+# get current architecture
+ARG ARCH=arm64
+
+ENV GO_BINARY_TAR_NAME go${GO_VERSION}.linux-${ARCH}
+ENV GO_BINARY_TAR_DOWNLOAD_LINK https://go.dev/dl/${GO_BINARY_TAR_NAME}.tar.gz
+
+RUN wget ${GO_BINARY_TAR_DOWNLOAD_LINK} -O ${GO_BINARY_TAR_NAME}.tar.gz
+RUN tar -C /usr/local -xzf ${GO_BINARY_TAR_NAME}.tar.gz
 ENV PATH $PATH:/usr/local/go/bin
 
 RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
@@ -73,6 +85,7 @@ RUN ossutil config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_
 ENV java_version jdk8u282-b08
 ENV java_package_filename OpenJDK8U-jdk_x64_linux_hotspot_8u282b08.tar.gz
 ENV downloadlink https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/$java_version/$java_package_filename
+
 # download java
 RUN wget --no-cookies -O /tmp/$java_package_filename $downloadlink 
 # java setting
