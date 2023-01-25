@@ -20,6 +20,8 @@ Download size of this image is only:
 
 ## Installed
 
+### Base
+
 - **nginx** 1.22
 - **git** 2.30.2
 - **curl** 7.74.0
@@ -28,11 +30,11 @@ Download size of this image is only:
 - **ossutil64** 1.7.14
 - **ttf-mscorefonts**
 - **go** 1.19.5
-- **java** 1.8.0_282
+- **java** jdk8u292-b10
 - **mvn** 3.3.9
 - **python** 3.9.2
-- **node** 16.18.0
-- **npm** 8.19.2
+- **node** 16.19.0
+- **npm** 8.19.3
 - **yarn** 1.22.19
 - **certbot**
 - **n** 8.2.0
@@ -45,11 +47,11 @@ Download size of this image is only:
 - **openssl** 1.1.1n
 - **tree** 1.8.0
 - **crontab** 1.5.2
-- **rclone**
-- **mysql-client**
+- **rclone** 1.53.3
+- **mysql-client** 10.19
 - **[webhook 2.8.0](https://github.com/adnanh/webhook)**
 
-## Other Modules
+### Other
 
 - **tzdata**
 - **gcc**
@@ -59,7 +61,7 @@ Download size of this image is only:
 
 ### Nginx
 
-```Docker
+```bash
 docker run -d -t -i --name nginx --restart always --privileged=true \
 -p 81:80 funnyzak/java-nodejs-python-go-etc nginx -g 'daemon off;'
 ```
@@ -85,7 +87,7 @@ nrm use <registry>
 
 ### N
 
-```
+```bash
 n --version
 n [options/env] [COMMAND] [args]
 ```

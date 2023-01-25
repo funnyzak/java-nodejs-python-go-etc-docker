@@ -94,8 +94,8 @@ ENV ALIYUN_OSS_AK_SID world
 RUN ossutil config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_OSS_AK_SID} -L CH
 
 # set shell variables for java installation
-ENV java_version jdk8u282-b08
-ENV java_package_filename OpenJDK8U-jdk_x64_linux_hotspot_8u282b08.tar.gz
+ENV java_version jdk8u292-b10
+ENV java_package_filename OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz
 ENV downloadlink https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/$java_version/$java_package_filename
 
 # download java
