@@ -4,7 +4,7 @@ ARG BUILD_DATE
 ARG VCS_REF
 
 LABEL maintainer="Leon (github.com/funnyzak)" \
-    org.label-schema.version="1.3.4" \
+    org.label-schema.version="1.3.6" \
     org.label-schema.vendor="leon<silenceace@gmail.com>" \
     org.label-schema.name="java-nodejs-python-go-etc" \
     org.label-schema.build-date="${BUILD_DATE}" \

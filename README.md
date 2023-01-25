@@ -8,7 +8,7 @@ The image is based on the official `debian:stable-date-slim` image, and the main
 
 The image is used for building and deploying projects.
 
-## Pull Image
+## Pull
 
 Download size of this image is only:
 
@@ -66,9 +66,11 @@ docker run -d -t -i --name nginx --restart always --privileged=true \
 -p 81:80 funnyzak/java-nodejs-python-go-etc nginx -g 'daemon off;'
 ```
 
-## Other
+## Package
 
-### OSSUTil
+Some summary of the package.
+
+### OSSUtil
 
 ```bash
 # ossutil64 set
