@@ -21,10 +21,10 @@ ENV OSSUTIL_VERSION=1.7.14
 ENV GO_VERSION=1.18.8
 
 COPY repo/sources.list /etc/apt/sources.list
+COPY repo/nginx.list /etc/apt/sources.list.d/nginx.list
 
 # Install Package
-RUN \
-    apt-get update && \
+RUN apt-get update && \
     apt-get -y upgrade && \
     # gyp compilation.
     apt-get install -y g++ gcc make && \
@@ -40,12 +40,16 @@ RUN \
     apt-get install -y procps && \
     # python
     apt-get install -y python3.9 && \
-    apt-get clean $$ \
+    apt-get clean && \
     apt-get autoremove
 
-# install node 16
+# install node 16、nginx
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get -y install nodejs
+RUN curl -L https://nginx.org/keys/nginx_signing.key | apt-key add -
+RUN apt-get update && \
+    apt-get -y install nodejs nginx && \
+    apt-get clean && \
+    apt-get autoremove
 
 # nrm yarn n
 RUN npm install -g nrm yarn n

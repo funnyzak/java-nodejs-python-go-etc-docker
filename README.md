@@ -4,7 +4,7 @@
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 
-The image is based on the official `debian:stable-date-slim` image, and the main modules are installed. 
+The image is based on the official `debian:stable-date-slim` image, and the main modules are installed.
 
 The image is used for building and deploying projects.
 
@@ -20,7 +20,7 @@ Download size of this image is only:
 
 ## Installed
 
-* nginx 1.18.0
+* nginx 1.22
 * git 2.30.2
 * curl 7.74.0
 * wget 1.21
