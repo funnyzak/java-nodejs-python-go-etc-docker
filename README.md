@@ -4,17 +4,21 @@
 [![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 
-This image is based on Debian Linux image, which is a 932MB image.
+The image is based on the official `debian:stable-date-slim` image, and the main modules are installed. 
+
+The image is used for building and deploying projects.
+
+## Pull Image
+
+Download size of this image is only:
+
+[![Image Size](https://img.shields.io/docker/image-size/funnyzak/alpine-cron)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 
 [Docker hub image: funnyzak/java-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc)
 
-Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
+**Docker Pull Command**: `docker pull funnyzak/java-nodejs-python-go-etc:latest`
 
----
-
-## Environment
-
-## Main Modules
+## Installed
 
 * nginx 1.18.0
 * git 2.30.2
@@ -39,6 +43,7 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 * openssl 1.1.1n
 * tree 1.8.0
 * crontab 1.5.2
+* rclone
 * mariadb-client-10.5
 * [webhook 2.8.0](https://github.com/adnanh/webhook)
 
@@ -49,7 +54,7 @@ Docker Pull Command: `docker pull funnyzak/java-nodejs-python-go-etc`
 * g++
 * ttf-mscorefonts-installer
 
-## Run
+## Usage
 
 ### Nginx
 
@@ -83,3 +88,15 @@ nrm use <registry>
 n --version
 n [options/env] [COMMAND] [args]
 ```
+
+## Contribution
+
+If you have any questions or suggestions, please feel free to submit an issue or pull request.
+
+<a href="https://github.com/funnyzak/java-nodejs-python-go-etc/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=funnyzak/java-nodejs-python-go-etc" />
+</a>
+
+## License
+
+MIT License © 2022 [funnyzak](https://github.com/funnyzak)

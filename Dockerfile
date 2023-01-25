@@ -1,18 +1,19 @@
-FROM debian:stable-20221024
+FROM debian:stable-20230109-slim
 
-LABEL maintainer="leon (github.com/funnyzak)"
+ARG BUILD_DATE
+ARG VCS_REF
 
-LABEL org.label-schema.vendor="leon<silenceace@gmail.com>" \
+LABEL maintainer="Leon (github.com/funnyzak)" \
+    org.label-schema.version="1.3.4" \
+    org.label-schema.vendor="leon<silenceace@gmail.com>" \
     org.label-schema.name="java-nodejs-python-go-etc" \
     org.label-schema.build-date="${BUILD_DATE}" \
-    org.label-schema.description="Common Application Operating Environment" \
+    org.label-schema.description="Common Application Environment" \
     org.label-schema.url="https://yycc.me" \
-    org.label-schema.schema-version="1.3.2"	\
     org.label-schema.vcs-type="Git" \
     org.label-schema.vcs-ref="${VCS_REF}" \
     org.label-schema.vcs-url="https://github.com/funnyzak/java-nodejs-python-go-etc" 
 
-# env
 ENV TZ Asia/Shanghai
 ENV LC_ALL C.UTF-8
 ENV LANG=C.UTF-8
@@ -21,7 +22,7 @@ ENV GO_VERSION=1.18.8
 
 COPY repo/sources.list /etc/apt/sources.list
 
-# Install modules
+# Install Package
 RUN \
     apt-get update && \
     apt-get -y upgrade && \
@@ -29,6 +30,7 @@ RUN \
     apt-get install -y g++ gcc make && \
     # Install need modules
     apt-get install -y openssl tree bash git rsync npm nodejs vim && \
+    apt-get install -y rclone certbot && \
     apt-get install -y curl nginx zip unzip gzip bzip2 tar wget tzdata && \
     # ms fonts
     apt-get install -y ttf-mscorefonts-installer && \
