@@ -18,38 +18,45 @@ ENV TZ Asia/Shanghai
 ENV LC_ALL C.UTF-8
 ENV LANG=C.UTF-8
 ENV OSSUTIL_VERSION=1.7.14
-ENV GO_VERSION=1.18.8
+ENV GO_VERSION=1.19.5
 
+# base repo
 COPY repo/sources.list /etc/apt/sources.list
+
+# Install need modules
+RUN apt-get update && \
+    # gyp compilation
+    apt-get install -y g++ gcc make && \
+    # base modules
+    apt-get install -y gnupg2 openssl tree bash git vim curl wget
+
+# nginx repo
 COPY repo/nginx.list /etc/apt/sources.list.d/nginx.list
+RUN curl -L https://nginx.org/keys/nginx_signing.key | apt-key add -
 
 # Install Package
 RUN apt-get update && \
     apt-get -y upgrade && \
-    # gyp compilation.
-    apt-get install -y g++ gcc make && \
-    # Install need modules
-    apt-get install -y openssl tree bash git rsync npm nodejs vim && \
-    apt-get install -y rclone certbot && \
-    apt-get install -y curl nginx zip unzip gzip bzip2 tar wget tzdata && \
+    # Install modules
+    apt-get install -y rsync rclone certbot && \
+    apt-get install -y zip nginx unzip gzip bzip2 tar tzdata && \
     # ms fonts
     apt-get install -y ttf-mscorefonts-installer && \
+    # cert
     apt-get install -y ca-certificates && \
+    # mysql client
     apt-get install -y mariadb-client-10.5 && \
     # command ps
     apt-get install -y procps && \
     # python
-    apt-get install -y python3.9 && \
-    apt-get clean && \
-    apt-get autoremove
+    apt-get install -y python3.9
 
-# install node 16、nginx
+# install node 16
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN curl -L https://nginx.org/keys/nginx_signing.key | apt-key add -
 RUN apt-get update && \
-    apt-get -y install nodejs nginx && \
+    apt-get -y install nodejs && \
     apt-get clean && \
-    apt-get autoremove
+    apt-get -y autoremove
 
 # nrm yarn n
 RUN npm install -g nrm yarn n

@@ -20,39 +20,40 @@ Download size of this image is only:
 
 ## Installed
 
-* nginx 1.22
-* git 2.30.2
-* curl 7.74.0
-* wget 1.21
-* nrm 1.2.5
-* ossutil64 1.7.14
-* go 1.18.8
-* java 1.8.0_282
-* mvn 3.3.9
-* python 3.9.2
-* node 16.18.0
-* npm 8.19.2
-* yarn 1.22.19
-* n 8.2.0
-* tar 1.34
-* zip 10.2.1
-* bash 5.1.4
-* rsync 3.2.3
-* gzip 1.10
-* bzip2 1.0.8
-* openssl 1.1.1n
-* tree 1.8.0
-* crontab 1.5.2
-* rclone
-* mariadb-client-10.5
-* [webhook 2.8.0](https://github.com/adnanh/webhook)
+- **nginx** 1.22
+- **git** 2.30.2
+- **curl** 7.74.0
+- **wget** 1.21
+- **nrm** 1.2.5
+- **ossutil64** 1.7.14
+- **ttf-mscorefonts**
+- **go** 1.19.5
+- **java** 1.8.0_282
+- **mvn** 3.3.9
+- **python** 3.9.2
+- **node** 16.18.0
+- **npm** 8.19.2
+- **yarn** 1.22.19
+- **certbot**
+- **n** 8.2.0
+- **tar** 1.34
+- **zip** 10.2.1
+- **bash** 5.1.4
+- **rsync** 3.2.3
+- **gzip** 1.10
+- **bzip2** 1.0.8
+- **openssl** 1.1.1n
+- **tree** 1.8.0
+- **crontab** 1.5.2
+- **rclone**
+- **mysql-client**
+- **[webhook 2.8.0](https://github.com/adnanh/webhook)**
 
 ## Other Modules
 
-* tzdata
-* gcc
-* g++
-* ttf-mscorefonts-installer
+- **tzdata**
+- **gcc**
+- **g++**
 
 ## Usage
 
