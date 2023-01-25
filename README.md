@@ -93,8 +93,8 @@ n [options/env] [COMMAND] [args]
 
 If you have any questions or suggestions, please feel free to submit an issue or pull request.
 
-<a href="https://github.com/funnyzak/java-nodejs-python-go-etc/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=funnyzak/java-nodejs-python-go-etc" />
+<a href="https://github.com/funnyzak/java-nodejs-python-go-etc-docker/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=funnyzak/java-nodejs-python-go-etc-docker" />
 </a>
 
 ## License
