@@ -30,7 +30,7 @@ Download size of this image is only:
 - **ossutil64** 1.7.14
 - **ttf-mscorefonts**
 - **go** 1.19.5
-- **java** jdk8u292-b10
+- **java** 1.8.0_292
 - **mvn** 3.3.9
 - **python** 3.9.2
 - **node** 16.19.0
