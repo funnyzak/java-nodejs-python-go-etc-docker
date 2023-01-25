@@ -4,7 +4,7 @@ ARG BUILD_DATE
 ARG VCS_REF
 
 LABEL maintainer="Leon (github.com/funnyzak)" \
-    org.label-schema.version="1.3.6" \
+    org.label-schema.version="1.3.7" \
     org.label-schema.vendor="leon<silenceace@gmail.com>" \
     org.label-schema.name="java-nodejs-python-go-etc" \
     org.label-schema.build-date="${BUILD_DATE}" \
@@ -70,6 +70,7 @@ ENV GO_BINARY_TAR_DOWNLOAD_LINK https://dl.google.com/go/${GO_BINARY_TAR_NAME}.t
 
 RUN wget ${GO_BINARY_TAR_DOWNLOAD_LINK} -O ${GO_BINARY_TAR_NAME}.tar.gz
 RUN tar -C /usr/local -xzf ${GO_BINARY_TAR_NAME}.tar.gz
+RUN rm -f ${GO_BINARY_TAR_NAME}.tar.gz
 ENV PATH $PATH:/usr/local/go/bin
 
 RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
