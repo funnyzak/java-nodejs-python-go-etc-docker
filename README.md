@@ -6,13 +6,13 @@
 ![GitHub release (latest by date)][latest-release]
 
 
-[build-status-image]:  https://github.com/funnyzak/java-nodejs-python-go-etc/actions/workflows/build.yml/badge.svg
-[build-status]: https://github.com/funnyzak/java-nodejs-python-go-etc/actions
-[repo-size-image]: https://img.shields.io/github/repo-size/funnyzak/java-nodejs-python-go-etc?style=flat-square&logo=github&logoColor=white&label=size
-[repository-url]: https://github.com/funnyzak/java-nodejs-python-go-etc
-[license-image]: https://img.shields.io/github/license/funnyzak/java-nodejs-python-go-etc?style=flat-square&logo=github&logoColor=white&label=license
-[latest-commit]: https://img.shields.io/github/last-commit/funnyzak/java-nodejs-python-go-etc
-[latest-release]: https://img.shields.io/github/v/release/funnyzak/java-nodejs-python-go-etc
+[build-status-image]:  https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions/workflows/build.yml/badge.svg
+[build-status]: https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions
+[repo-size-image]: https://img.shields.io/github/repo-size/funnyzak/java-nodejs-python-go-etc-docker?style=flat-square&logo=github&logoColor=white&label=size
+[repository-url]: https://github.com/funnyzak/java-nodejs-python-go-etc-docker
+[license-image]: https://img.shields.io/github/license/funnyzak/java-nodejs-python-go-etc-docker?style=flat-square&logo=github&logoColor=white&label=license
+[latest-commit]: https://img.shields.io/github/last-commit/funnyzak/java-nodejs-python-go-etc-docker
+[latest-release]: https://img.shields.io/github/v/release/funnyzak/java-nodejs-python-go-etc-docker
 
 The image is based on the official `debian:stable-date-slim` image, and the main modules are installed.
 
