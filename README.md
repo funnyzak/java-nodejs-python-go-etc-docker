@@ -1,8 +1,8 @@
 # java-nodejs-python-go-etc docker
 
 [![Build Status][build-status-image]][build-status]
-[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-glibc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-glibc/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-glibc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-glibc/)
+[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 ![GitHub release (latest by date)][latest-release]
 
 
@@ -20,7 +20,7 @@ The image is used for building and deploying projects.
 
 Download size of this image is:
 
-[![Image Size](https://img.shields.io/docker/image-size/funnyzak/alpine-cron)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
+[![Image Size](https://img.shields.io/docker/image-size/funnyzak/java-nodejs-python-go-etc)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 
 [Docker hub image: funnyzak/java-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc)
 
