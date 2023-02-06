@@ -57,7 +57,7 @@ jobs:
             VERSION=${{ env.VERSION }}
           push: true
           tags: |
-            ${{ env.IMAGE_REPOSITORY }}:${{ env.SOURGE_TAG }}
+            ${{ env.IMAGE_REPOSITORY }}:${{ env.VERSION }}
             ${{ env.IMAGE_REPOSITORY }}:latest
           platforms: |
             linux/amd64
