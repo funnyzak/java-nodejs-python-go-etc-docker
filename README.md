@@ -1,18 +1,10 @@
 # java-nodejs-python-go-etc docker
 
 [![Build Status][build-status-image]][build-status]
-[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
-![GitHub release (latest by date)][latest-release]
-
-
-[build-status-image]:  https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions/workflows/build.yml/badge.svg
-[build-status]: https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions
-[repo-size-image]: https://img.shields.io/github/repo-size/funnyzak/java-nodejs-python-go-etc-docker?style=flat-square&logo=github&logoColor=white&label=size
-[repository-url]: https://github.com/funnyzak/java-nodejs-python-go-etc-docker
-[license-image]: https://img.shields.io/github/license/funnyzak/java-nodejs-python-go-etc-docker?style=flat-square&logo=github&logoColor=white&label=license
-[latest-commit]: https://img.shields.io/github/last-commit/funnyzak/java-nodejs-python-go-etc-docker
-[latest-release]: https://img.shields.io/github/v/release/funnyzak/java-nodejs-python-go-etc-docker
+[![Docker Stars][docker-star-image]][repository-url]
+[![Docker Pulls][docker-pull-image]][repository-url]
+[![GitHub release (latest by date)][latest-release]][repository-url]
+[![GitHub][license-image]][repository-url]
 
 The image is based on the official `debian:stable-date-slim` image, and the main modules are installed.
 
@@ -20,13 +12,13 @@ The image is used for building and deploying projects.
 
 Download size of this image is:
 
-[![Image Size](https://img.shields.io/docker/image-size/funnyzak/java-nodejs-python-go-etc)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
+[![Image Size][docker-image-size]][docker-hub-url]
 
-[Docker hub image: funnyzak/java-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc)
+[Docker hub image: funnyzak/java-nodejs-python-go-etc][docker-hub-url]
 
 **Docker Pull Command**: `docker pull funnyzak/java-nodejs-python-go-etc:latest`
 
-## Installed
+## Installed Modules
 
 The following modules are installed in the image.
 
@@ -92,6 +84,7 @@ ossutil config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_OSS_
 # osutils64 sync
 ossutil sync -f /app/package/  oss://bucket-name/app/package/
 ```
+
 ### NRM
 
 ```bash
@@ -127,3 +120,13 @@ If you have any questions or suggestions, please feel free to submit an issue or
 ## License
 
 MIT License © 2022 [funnyzak](https://github.com/funnyzak)
+
+[build-status-image]: https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions/workflows/build.yml/badge.svg
+[build-status]: https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions
+[repository-url]: https://github.com/funnyzak/java-nodejs-python-go-etc-docker
+[license-image]: https://img.shields.io/github/license/funnyzak/java-nodejs-python-go-etc-docker?style=flat-square&logo=github&logoColor=white&label=license
+[latest-release]: https://img.shields.io/github/v/release/funnyzak/java-nodejs-python-go-etc-docker
+[docker-star-image]: https://img.shields.io/docker/stars/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square
+[docker-pull-image]: https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square
+[docker-image-size]: https://img.shields.io/docker/image-size/funnyzak/java-nodejs-python-go-etc
+[docker-hub-url]: https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc
