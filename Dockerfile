@@ -1,10 +1,11 @@
-FROM debian:stable-20230109-slim
+FROM debian:stable-20230202-slim
 
 ARG BUILD_DATE
 ARG VCS_REF
+ARG VERSION 1.0.0
 
 LABEL maintainer="Leon (github.com/funnyzak)" \
-    org.label-schema.version="1.3.8" \
+    org.label-schema.version="${VERSION}" \
     org.label-schema.vendor="leon<silenceace@gmail.com>" \
     org.label-schema.name="java-nodejs-python-go-etc" \
     org.label-schema.build-date="${BUILD_DATE}" \
@@ -18,7 +19,8 @@ ENV TZ Asia/Shanghai
 ENV LC_ALL C.UTF-8
 ENV LANG=C.UTF-8
 ENV OSSUTIL_VERSION=1.7.14
-ENV GO_VERSION=1.19.5
+ENV GO_VERSION=1.20
+ENV JAVA_VERSION jdk8u292-b10
 
 # base repo
 COPY repo/sources.list /etc/apt/sources.list
@@ -95,16 +97,15 @@ ENV ALIYUN_OSS_AK_SID world
 RUN ossutil config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_OSS_AK_SID} -L CH
 
 # set shell variables for java installation
-ENV java_version jdk8u292-b10
-ENV java_package_filename OpenJDK8U-jdk_x64_linux_hotspot_8u292b10.tar.gz
-ENV downloadlink https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/$java_version/$java_package_filename
+ENV java_package_filename OpenJDK8U-jdk_x64_linux_hotspot_${JAVA_VERSION}.tar.gz
+ENV downloadlink https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/$JAVA_VERSION/$java_package_filename
 
 # download java
 RUN wget --no-cookies -O /tmp/$java_package_filename $downloadlink 
 # java setting
 RUN mkdir /opt/java-oracle && tar -zxf /tmp/$java_package_filename -C /opt/java-oracle/
 RUN rm -f /tmp/$java_package_filename
-ENV JAVA_HOME /opt/java-oracle/$java_version
+ENV JAVA_HOME /opt/java-oracle/$JAVA_VERSION
 ENV JRE_HOME=${JAVA_HOME}/jre
 ENV CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
 ENV PATH ${JAVA_HOME}/bin:$PATH

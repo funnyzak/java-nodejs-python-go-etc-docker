@@ -1,16 +1,24 @@
 # java-nodejs-python-go-etc docker
 
-[![release](https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions/workflows/release.yml/badge.svg)](https://github.com/funnyzak/java-nodejs-python-go-etc/actions/workflows/release.yml)
-[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
+[![Build Status][build-status-image]][build-status]
+[![Docker Stars](https://img.shields.io/docker/stars/funnyzak/alpine-glibc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-glibc/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/funnyzak/alpine-glibc.svg?style=flat-square)](https://hub.docker.com/r/funnyzak/alpine-glibc/)
+![GitHub release (latest by date)][latest-release]
+
+
+[build-status-image]:  https://github.com/funnyzak/java-nodejs-python-go-etc/actions/workflows/build.yml/badge.svg
+[build-status]: https://github.com/funnyzak/java-nodejs-python-go-etc/actions
+[repo-size-image]: https://img.shields.io/github/repo-size/funnyzak/java-nodejs-python-go-etc?style=flat-square&logo=github&logoColor=white&label=size
+[repository-url]: https://github.com/funnyzak/java-nodejs-python-go-etc
+[license-image]: https://img.shields.io/github/license/funnyzak/java-nodejs-python-go-etc?style=flat-square&logo=github&logoColor=white&label=license
+[latest-commit]: https://img.shields.io/github/last-commit/funnyzak/java-nodejs-python-go-etc
+[latest-release]: https://img.shields.io/github/v/release/funnyzak/java-nodejs-python-go-etc
 
 The image is based on the official `debian:stable-date-slim` image, and the main modules are installed.
 
 The image is used for building and deploying projects.
 
-## Pull
-
-Download size of this image is only:
+Download size of this image is:
 
 [![Image Size](https://img.shields.io/docker/image-size/funnyzak/alpine-cron)](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc/)
 
@@ -20,7 +28,9 @@ Download size of this image is only:
 
 ## Installed
 
-### Base
+The following modules are installed in the image.
+
+### Base Module
 
 - **nginx** 1.22
 - **git** 2.30.2
@@ -29,7 +39,7 @@ Download size of this image is only:
 - **nrm** 1.2.5
 - **ossutil64** 1.7.14
 - **ttf-mscorefonts**
-- **go** 1.19.5
+- **go** 1.20
 - **java** 1.8.0_292
 - **mvn** 3.3.9
 - **python** 3.9.2
@@ -56,10 +66,13 @@ Download size of this image is only:
 - **tzdata**
 - **gcc**
 - **g++**
+- **[pushoo-cli](https://github.com/funnyzak/pushoo-cli)**
 
 ## Usage
 
 ### Nginx
+
+Run nginx in the container.
 
 ```bash
 docker run -d -t -i --name nginx --restart always --privileged=true \
@@ -68,7 +81,7 @@ docker run -d -t -i --name nginx --restart always --privileged=true \
 
 ## Package
 
-Some summary of the package.
+Some summary of the package in the image.
 
 ### OSSUtil
 
@@ -79,7 +92,6 @@ ossutil config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_OSS_
 # osutils64 sync
 ossutil sync -f /app/package/  oss://bucket-name/app/package/
 ```
-
 ### NRM
 
 ```bash
@@ -92,6 +104,16 @@ nrm use <registry>
 ```bash
 n --version
 n [options/env] [COMMAND] [args]
+```
+
+## Docker build
+
+```bash
+docker build \
+--build-arg VCS_REF=`git rev-parse --short HEAD` \
+--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+--build-arg VERSION="0.1.0" \
+-t funnyzak/java-nodejs-python-go-etc:latest .
 ```
 
 ## Contribution
