@@ -51,6 +51,7 @@ The following modules are installed in the image.
 - **crontab** 1.5.2
 - **rclone** 1.53.3
 - **mysql-client** 10.19
+- **aspnetcore-runtime** 7.0
 - **[webhook 2.8.0](https://github.com/adnanh/webhook)**
 
 ### Other

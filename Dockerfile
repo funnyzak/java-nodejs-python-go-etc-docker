@@ -65,6 +65,15 @@ RUN npm install -g nrm yarn n
 # install pushoo-cli
 RUN npm install -g pushoo-cli
 
+# donet 7.0
+RUN wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    rm packages-microsoft-prod.deb && \
+    apt-get update && \
+    apt-get install -y aspnetcore-runtime-7.0 && \
+    apt-get clean && \
+    apt-get -y autoremove
+
 # GO
 ENV GO_BINARY_TAR_NAME go${GO_VERSION}.linux-amd64
 ENV GO_BINARY_TAR_DOWNLOAD_LINK https://dl.google.com/go/${GO_BINARY_TAR_NAME}.tar.gz
