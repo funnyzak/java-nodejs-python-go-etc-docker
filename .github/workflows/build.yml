@@ -33,6 +33,7 @@ jobs:
       - name: Build changelog
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@v3.6.0
+        if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -63,6 +64,7 @@ jobs:
             linux/amd64
       - name: Github release
         uses: softprops/action-gh-release@v1
+        if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') }}
         with:
           body: ${{steps.build_changelog.outputs.changelog}}
         env:
