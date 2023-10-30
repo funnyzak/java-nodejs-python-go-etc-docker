@@ -18,7 +18,7 @@ LABEL maintainer="Leon (github.com/funnyzak)" \
 ENV TZ Asia/Shanghai
 ENV LC_ALL C.UTF-8
 ENV LANG=C.UTF-8
-ENV OSSUTIL_VERSION=1.7.14
+ENV OSSUTIL_VERSION=1.7.17
 ENV GO_VERSION=1.20
 
 # base repo
