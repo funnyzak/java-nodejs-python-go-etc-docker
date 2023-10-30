@@ -24,22 +24,22 @@ The following modules are installed in the image.
 
 ### Base Module
 
-- **nginx** 1.22
-- **git** 2.30.2
-- **curl** 7.74.0
-- **wget** 1.21
-- **nrm** 1.2.5
-- **ossutil64** 1.7.17
+- **nginx** 1.22.1
+- **git** 2.33.2
+- **curl** 7.88.1
+- **wget** 1.21.1
+- **nrm** 1.2.6
+- **ossutil** 1.7.17
 - **ttf-mscorefonts**
 - **go** 1.20
-- **java** jdk8u392-b08 Latest
+- **java** 1.8.0_392 (Temurin)(build 1.8.0_392-b08)
 - **mvn** 3.3.9
-- **python** 3.9.2
-- **node** 16.19.0
-- **npm** 8.19.3
+- **python** 3.11.2
+- **node** 18.13.0
+- **npm** 9.2.0
 - **yarn** 1.22.19
-- **certbot**
-- **n** 8.2.0
+- **certbot** 2.1.0
+- **n** 9.2.0
 - **tar** 1.34
 - **zip** 10.2.1
 - **bash** 5.1.4
@@ -49,8 +49,8 @@ The following modules are installed in the image.
 - **openssl** 1.1.1n
 - **tree** 1.8.0
 - **crontab** 1.5.2
-- **rclone** 1.53.3
-- **mysql-client** 10.19
+- **rclone** 1.60.1
+- **mysqldump** 10.19
 - **[webhook 2.8.0](https://github.com/adnanh/webhook)**
 
 ### Other
