@@ -46,11 +46,11 @@ RUN apt-get update && \
     # cert
     apt-get install -y ca-certificates && \
     # mysql client
-    apt-get install -y mariadb-client-10.5 && \
+    apt-get install -y mariadb-client && \
     # command ps
     apt-get install -y procps && \
     # python
-    apt-get install -y python3.9
+    apt-get install -y python3.10
 
 # install node 16
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -

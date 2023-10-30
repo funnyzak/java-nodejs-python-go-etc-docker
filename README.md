@@ -29,10 +29,10 @@ The following modules are installed in the image.
 - **curl** 7.74.0
 - **wget** 1.21
 - **nrm** 1.2.5
-- **ossutil64** 1.7.14
+- **ossutil64** 1.7.17
 - **ttf-mscorefonts**
 - **go** 1.20
-- **java** 1.8.0_292
+- **java** jdk8u392-b08 Latest
 - **mvn** 3.3.9
 - **python** 3.9.2
 - **node** 16.19.0
