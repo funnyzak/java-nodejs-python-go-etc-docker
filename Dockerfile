@@ -95,6 +95,11 @@ RUN chmod 755 /opt/ossutil
 RUN ln -s /opt/ossutil /usr/local/bin
 ENV PATH /usr/local/bin/ossutil:$PATH
 
+# Minio Client
+RUN curl https://dl.min.io/client/mc/release/linux-amd64/mc --create-dirs -o /opt/minio-binaries/mc
+RUN chmod +x /opt/minio-binaries/mc
+RUN PATH=$PATH:/opt/minio-binaries
+
 # ossutil env
 ENV ALIYUN_OSS_ENDPOINT oss-cn-beijing-internal.aliyuncs.com
 ENV ALIYUN_OSS_AK_ID hello
