@@ -51,6 +51,7 @@ The following modules are installed in the image.
 - **crontab** 1.5.2
 - **rclone** 1.60.1
 - **mysqldump** 10.19
+- **mc(Minio Client)** RELEASE.2023-11-10T21-37-17Z
 - **[webhook 2.8.0](https://github.com/adnanh/webhook)**
 
 ### Other
