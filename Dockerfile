@@ -98,7 +98,8 @@ ENV PATH /usr/local/bin/ossutil:$PATH
 # Minio Client
 RUN curl https://dl.min.io/client/mc/release/linux-amd64/mc --create-dirs -o /opt/minio-binaries/mc
 RUN chmod +x /opt/minio-binaries/mc
-RUN PATH=$PATH:/opt/minio-binaries
+RUN ln -s /opt/minio-binaries/mc /usr/local/bin
+RUN PATH /usr/local/bin/mc:$PATH
 
 # ossutil env
 ENV ALIYUN_OSS_ENDPOINT oss-cn-beijing-internal.aliyuncs.com
