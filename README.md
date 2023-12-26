@@ -35,6 +35,8 @@ The following modules are installed in the image.
 - **java** 1.8.0_392 (Temurin)(build 1.8.0_392-b08)
 - **mvn** 3.3.9
 - **python** 3.11.2
+- **pip3**
+- **venv**
 - **node** 18.13.0
 - **npm** 9.2.0
 - **yarn** 1.22.19

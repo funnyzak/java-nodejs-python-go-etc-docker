@@ -51,14 +51,10 @@ RUN apt-get update && \
     # command ps
     apt-get install -y procps && \
     # python
-    apt-get install -y python3.10 && \
+    apt-get install -y python3.11 python3-venv python3-pip && \
     # npm
     apt-get install -y npm
 
-# install pip
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
-    python3 get-pip.py && \
-    rm -f get-pip.py
 
 # install node 16
 RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
