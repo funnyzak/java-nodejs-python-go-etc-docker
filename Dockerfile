@@ -7,17 +7,6 @@ ARG NODE_MAJOR=16
 ARG OSSUTIL_VERSION=1.7.17
 ARG GO_VERSION=1.20
 
-LABEL maintainer="Leon (github.com/funnyzak)" \
-    org.label-schema.version="${VERSION}" \
-    org.label-schema.vendor="leon<silenceace@gmail.com>" \
-    org.label-schema.name="java-nodejs-python-go-etc" \
-    org.label-schema.build-date="${BUILD_DATE}" \
-    org.label-schema.description="Common Application Environment" \
-    org.label-schema.url="https://yycc.me" \
-    org.label-schema.vcs-type="Git" \
-    org.label-schema.vcs-ref="${VCS_REF}" \
-    org.label-schema.vcs-url="https://github.com/funnyzak/java-nodejs-python-go-etc" 
-
 ENV TZ Asia/Shanghai
 ENV LC_ALL C.UTF-8
 ENV LANG=C.UTF-8
@@ -64,9 +53,10 @@ RUN apt-get update && \
     apt-get clean && \
     apt-get -y autoremove
 
-# nrm yarn n
+# nrm yarn pnpm
 RUN npm install -g nrm 
 RUN npm install -g yarn
+RUN npm install -g pnpm
 RUN npm install -g n
 
 # install pushoo-cli
