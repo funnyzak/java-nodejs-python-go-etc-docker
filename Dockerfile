@@ -46,8 +46,6 @@ RUN apt-get update && \
     apt-get clean && \
     apt-get -y autoremove
 
-RUN pip3 install apprise
-
 # nrm yarn pnpm
 RUN npm install -g nrm 
 RUN npm install -g yarn
