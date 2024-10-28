@@ -25,7 +25,7 @@ The following modules are installed in the image.
 ### Base Module
 
 - **nginx** 1.22.1
-- **git** 2.33.2
+- **git** 2.39.2
 - **curl** 7.88.1
 - **wget** 1.21.1
 - **nrm** 1.2.6
@@ -38,6 +38,7 @@ The following modules are installed in the image.
 - **pip3**
 - **venv**
 - **node** 18.13.0
+- **pnpm** 9.1.0
 - **npm** 9.2.0
 - **yarn** 1.22.19
 - **certbot** 2.1.0
@@ -52,6 +53,7 @@ The following modules are installed in the image.
 - **tree** 1.8.0
 - **crontab** 1.5.2
 - **rclone** 1.60.1
+- **apprise** 
 - **mysqldump** 10.19
 - **mc(Minio Client)** RELEASE.2023-11-10T21-37-17Z
 - **[webhook 2.8.0](https://github.com/adnanh/webhook)**

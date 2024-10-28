@@ -1,11 +1,10 @@
-FROM debian:stable-20240423-slim
+FROM debian:stable-20241016-slim
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=1.6.1
-ARG NODE_MAJOR=16
-ARG OSSUTIL_VERSION=1.7.17
-ARG GO_VERSION=1.20
+ARG VERSION=1.6.2
+ARG OSSUTIL_VERSION=2.0.3-beta.09261200
+ARG GO_VERSION=1.23.2
 
 ENV TZ Asia/Shanghai
 ENV LC_ALL C.UTF-8
@@ -47,6 +46,8 @@ RUN apt-get update && \
     apt-get clean && \
     apt-get -y autoremove
 
+RUN pip3 install apprise
+
 # nrm yarn pnpm
 RUN npm install -g nrm 
 RUN npm install -g yarn
@@ -75,7 +76,7 @@ RUN go env -w GO111MODULE=auto
 RUN go get github.com/adnanh/webhook
 
 # ossutil64
-RUN curl -Lo /opt/ossutil http://gosspublic.alicdn.com/ossutil/$OSSUTIL_VERSION/ossutil64          
+RUN curl -Lo /opt/ossutil https://gosspublic.alicdn.com/ossutil/v2-beta/2.0.3-beta.09261200/ossutil-2.0.3-beta.09261200-linux-amd64.zip          
 RUN chmod 755 /opt/ossutil
 RUN ln -s /opt/ossutil /usr/local/bin
 ENV PATH /usr/local/bin/ossutil:$PATH
