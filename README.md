@@ -1,4 +1,4 @@
-# java-nodejs-python-go-etc docker
+# java-nodejs-python-go-etc
 
 [![Docker Image Publish](https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions/workflows/image-publish.yml/badge.svg)](https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions/workflows/image-publish.yml)
 [![Docker Stars][docker-star-image]][repository-url]
