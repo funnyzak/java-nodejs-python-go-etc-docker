@@ -68,7 +68,8 @@ jobs:
               echo "TAG_NAME=${{ github.repository }}:${{ github.ref_name }}"
               echo "BUILD_TRIGGER_DESCRIPTION=Triggered via tag ${{ github.ref_name }}"
             elif [ "${{ github.event_name }}" == 'push' ]; then
-              echo "TAG_NAME=${{ github.repository }}:$(git rev-parse --short HEAD)"
+              # echo "TAG_NAME=${{ github.repository }}:$(git rev-parse --short HEAD)"
+              echo "TAG_NAME=${{ github.repository }}:nightly"
               echo "BUILD_TRIGGER_DESCRIPTION=Triggered via push to ${{ github.ref_name }}"
             elif [ "${{ github.event.pull_request.merged }}" == 'true' ]; then
               echo "TAG_NAME=${{ github.repository }}:$(echo ${{ github.event.pull_request.head.sha }} | cut -c1-7)"
