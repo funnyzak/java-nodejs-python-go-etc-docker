@@ -1,6 +1,6 @@
-# java-nodejs-python-go-etc docker
+# java-nodejs-python-go-etc
 
-[![Build Status][build-status-image]][build-status]
+[![Docker Image Publish](https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions/workflows/image-publish.yml/badge.svg)](https://github.com/funnyzak/java-nodejs-python-go-etc-docker/actions/workflows/image-publish.yml)
 [![Docker Stars][docker-star-image]][repository-url]
 [![Docker Pulls][docker-pull-image]][repository-url]
 [![GitHub release (latest by date)][latest-release]][repository-url]
@@ -10,13 +10,14 @@ The image is based on the official `debian:stable-date-slim` image, and the main
 
 The image is used for building and deploying projects.
 
-Download size of this image is:
+Contains the following images:
 
-[![Image Size][docker-image-size]][docker-hub-url]
+- [funnyzak/java-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc)
+Docker pull command:
 
-[Docker hub image: funnyzak/java-nodejs-python-go-etc][docker-hub-url]
-
-**Docker Pull Command**: `docker pull funnyzak/java-nodejs-python-go-etc:latest`
+```bash
+docker pull funnyzak/java-nodejs-python-go-etc:latest
+```
 
 ## Installed Modules
 
@@ -24,23 +25,23 @@ The following modules are installed in the image.
 
 ### Base Module
 
+- **java** 1.8.0_432
 - **nginx** 1.22.1
-- **git** 2.39.2
+- **git** 2.39.5
 - **curl** 7.88.1
 - **wget** 1.21.1
 - **nrm** 1.2.6
 - **ossutil** 1.7.17
 - **ttf-mscorefonts**
-- **go** 1.20
-- **java** 1.8.0_392 (Temurin)(build 1.8.0_392-b08)
+- **go** 1.23.2
 - **mvn** 3.3.9
 - **python** 3.11.2
 - **pip3**
 - **venv**
-- **node** 18.13.0
-- **pnpm** 9.1.0
+- **node** 18.19.0
+- **pnpm** 9.12.0
 - **npm** 9.2.0
-- **yarn** 1.22.19
+- **yarn** 1.22.22
 - **certbot** 2.1.0
 - **n** 9.2.0
 - **tar** 1.34
@@ -53,10 +54,10 @@ The following modules are installed in the image.
 - **tree** 1.8.0
 - **crontab** 1.5.2
 - **rclone** 1.60.1
-- **apprise** 
+- **apprise** 1.2.0
 - **mysqldump** 10.19
-- **mc(Minio Client)** RELEASE.2023-11-10T21-37-17Z
-- **[webhook 2.8.0](https://github.com/adnanh/webhook)**
+- **mc(Minio Client)** RELEASE.2024-10-08T09-37-26Z
+- **[webhook 2.8.2](https://github.com/adnanh/webhook)**
 
 ### Other
 
@@ -135,3 +136,5 @@ MIT License © 2022 [funnyzak](https://github.com/funnyzak)
 [docker-pull-image]: https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square
 [docker-image-size]: https://img.shields.io/docker/image-size/funnyzak/java-nodejs-python-go-etc
 [docker-hub-url]: https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc
+[java11-docker-image-size]: https://img.shields.io/docker/image-size/funnyzak/java11-nodejs-python-go-etc
+[java11-docker-hub-url]: https://hub.docker.com/r/funnyzak/java11-nodejs-python-go-etc
