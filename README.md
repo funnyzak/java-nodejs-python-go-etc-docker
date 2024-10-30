@@ -13,15 +13,10 @@ The image is used for building and deploying projects.
 Contains the following images:
 
 - [funnyzak/java-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc)
-- [funnyzak/java11-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java11-nodejs-python-go-etc)
-
 Docker pull command:
 
 ```bash
-# java8 version
 docker pull funnyzak/java-nodejs-python-go-etc:latest
-# java11 version
-docker pull funnyzak/java11-nodejs-python-go-etc:latest
 ```
 
 ## Installed Modules
