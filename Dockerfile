@@ -67,11 +67,11 @@ ENV PATH $PATH:/usr/local/go/bin
 RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
 ENV GOPATH /go
 
-# go: go.mod file not found in current directory or any parent directory; see 'go help modules'"
-RUN go env -w GO111MODULE=auto
-
-# # Install Go Webhook
-RUN go get github.com/adnanh/webhook
+# Install Go Webhook
+RUN curl -Lo /tmp/webhook-linux-amd64.tar.gz https://github.com/adnanh/webhook/releases/download/2.8.2/webhook-linux-amd64.tar.gz \
+    && tar -C /opt -xzf /tmp/webhook-linux-amd64.tar.gz \
+    && chmod 755 /opt/webhook \
+    && ln -s /opt/webhook /usr/local/bin
 
 # ossutil64
 RUN curl -Lo /opt/ossutil https://gosspublic.alicdn.com/ossutil/v2-beta/2.0.3-beta.09261200/ossutil-2.0.3-beta.09261200-linux-amd64.zip          
@@ -91,8 +91,8 @@ ENV ALIYUN_OSS_AK_SID world
 RUN ossutil config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_OSS_AK_SID} -L CH
 
 # set shell variables for java installation
-ENV JAVA_VERSION jdk8u392-b08
-ENV JAVA_PACKAGE_FILENAME OpenJDK8U-jdk_x64_linux_hotspot_8u392b08.tar.gz
+ENV JAVA_VERSION jdk8u432-b06
+ENV JAVA_PACKAGE_FILENAME OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz
 
 ENV downloadlink https://github.com/adoptium/temurin8-binaries/releases/download/$JAVA_VERSION/$JAVA_PACKAGE_FILENAME
 
@@ -107,7 +107,6 @@ ENV CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}
 ENV PATH ${JAVA_HOME}/bin:$PATH
 
 # maven
-# get maven 3.3.9
 ENV maven_package_name apache-maven-3.3.9-bin.tar.gz
 ENV maven_package_unzip_name=apache-maven-3.3.9
 RUN wget --no-verbose -O /tmp/${maven_package_name} http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/${maven_package_name}
