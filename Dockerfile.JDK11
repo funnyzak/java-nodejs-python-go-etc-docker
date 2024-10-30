@@ -68,10 +68,10 @@ RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
 ENV GOPATH /go
 
 # Install Go Webhook
-# RUN curl -Lo /tmp/webhook-linux-amd64.tar.gz https://github.com/adnanh/webhook/releases/download/2.8.2/webhook-linux-amd64.tar.gz \
-#     && tar -C /opt -xzf /tmp/webhook-linux-amd64.tar.gz \
-#     && chmod 755 /opt/webhook \
-#     && ln -s /opt/webhook /usr/local/bin
+RUN curl -Lo /tmp/webhook-linux-amd64.tar.gz https://github.com/adnanh/webhook/releases/download/2.8.2/webhook-linux-amd64.tar.gz \
+    && tar -C /opt -xzf /tmp/webhook-linux-amd64.tar.gz \
+    && chmod 755 /opt/webhook \
+    && ln -s /opt/webhook /usr/local/bin
 
 # ossutil64
 RUN curl -Lo /opt/ossutil https://gosspublic.alicdn.com/ossutil/v2-beta/2.0.3-beta.09261200/ossutil-2.0.3-beta.09261200-linux-amd64.zip          
