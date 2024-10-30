@@ -87,10 +87,10 @@ RUN chmod +x /opt/minio-binaries/mc
 RUN ln -s /opt/minio-binaries/mc /usr/local/bin
 
 # set shell variables for java installation
-ENV JAVA_VERSION jdk-11.0.25+9
+ENV JAVA_VERSION jdk-11.0.25
 ENV JAVA_PACKAGE_FILENAME OpenJDK11U-jdk_x64_linux_hotspot_11.0.25_9.tar.gz
 
-ENV downloadlink https://github.com/adoptium/temurin8-binaries/releases/download/$JAVA_VERSION/$JAVA_PACKAGE_FILENAME
+ENV downloadlink https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.25%2B9/$JAVA_PACKAGE_FILENAME
 
 # download java
 RUN wget --no-cookies -O /tmp/$JAVA_PACKAGE_FILENAME $downloadlink 
