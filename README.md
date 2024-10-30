@@ -10,13 +10,19 @@ The image is based on the official `debian:stable-date-slim` image, and the main
 
 The image is used for building and deploying projects.
 
-Download size of this image is:
+Contains the following images:
 
-[![Image Size][docker-image-size]][docker-hub-url]
+- [funnyzak/java-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc)
+- [funnyzak/java11-nodejs-python-go-etc](https://hub.docker.com/r/funnyzak/java11-nodejs-python-go-etc)
 
-[Docker hub image: funnyzak/java-nodejs-python-go-etc][docker-hub-url]
+Docker pull command:
 
-**Docker Pull Command**: `docker pull funnyzak/java-nodejs-python-go-etc:latest`
+```bash
+# java8 version
+docker pull funnyzak/java-nodejs-python-go-etc:latest
+# java11 version
+docker pull funnyzak/java11-nodejs-python-go-etc:latest
+```
 
 ## Installed Modules
 
@@ -32,7 +38,6 @@ The following modules are installed in the image.
 - **ossutil** 1.7.17
 - **ttf-mscorefonts**
 - **go** 1.20
-- **java** 1.8.0_392 (Temurin)(build 1.8.0_392-b08)
 - **mvn** 3.3.9
 - **python** 3.11.2
 - **pip3**
@@ -135,3 +140,5 @@ MIT License © 2022 [funnyzak](https://github.com/funnyzak)
 [docker-pull-image]: https://img.shields.io/docker/pulls/funnyzak/java-nodejs-python-go-etc.svg?style=flat-square
 [docker-image-size]: https://img.shields.io/docker/image-size/funnyzak/java-nodejs-python-go-etc
 [docker-hub-url]: https://hub.docker.com/r/funnyzak/java-nodejs-python-go-etc
+[java11-docker-image-size]: https://img.shields.io/docker/image-size/funnyzak/java11-nodejs-python-go-etc
+[java11-docker-hub-url]: https://hub.docker.com/r/funnyzak/java11-nodejs-python-go-etc
