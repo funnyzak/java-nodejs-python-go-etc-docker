@@ -2,7 +2,7 @@ FROM debian:stable-20241016-slim
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=1.6.2
+ARG TAG=1.6.2
 ARG OSSUTIL_VERSION=2.0.3-beta.09261200
 ARG GO_VERSION=1.23.2
 
@@ -40,6 +40,7 @@ RUN apt-get update && \
     apt-get install -y procps && \
     # python
     apt-get install -y python3.11 python3-venv python3-pip && \
+    apt-get install -y apprise && \
     # npm
     apt-get install -y npm && \
     apt-get -y install nodejs && \
@@ -68,10 +69,11 @@ RUN mkdir -p /go/src /go/bin && chmod -R 777 /go
 ENV GOPATH /go
 
 # Install Go Webhook
-# RUN curl -Lo /tmp/webhook-linux-amd64.tar.gz https://github.com/adnanh/webhook/releases/download/2.8.2/webhook-linux-amd64.tar.gz \
-#     && tar -C /opt -xzf /tmp/webhook-linux-amd64.tar.gz \
-#     && chmod 755 /opt/webhook \
-#     && ln -s /opt/webhook /usr/local/bin
+RUN curl -Lo /tmp/webhook-linux-amd64.tar.gz https://github.com/adnanh/webhook/releases/download/2.8.2/webhook-linux-amd64.tar.gz \
+    && tar -C /tmp -xzf /tmp/webhook-linux-amd64.tar.gz \
+    && mv /tmp/webhook-linux-amd64/webhook /opt/webhook \
+    && chmod 755 /opt/webhook \
+    && ln -s /opt/webhook /usr/local/bin
 
 # ossutil64
 RUN curl -Lo /opt/ossutil https://gosspublic.alicdn.com/ossutil/v2-beta/2.0.3-beta.09261200/ossutil-2.0.3-beta.09261200-linux-amd64.zip          
@@ -88,7 +90,7 @@ RUN ln -s /opt/minio-binaries/mc /usr/local/bin
 ENV JAVA_VERSION jdk-11.0.25+9
 ENV JAVA_PACKAGE_FILENAME OpenJDK11U-jdk_x64_linux_hotspot_11.0.25_9.tar.gz
 
-ENV downloadlink https://github.com/adoptium/temurin11-binaries/releases/download/$JAVA_VERSION/$JAVA_PACKAGE_FILENAME
+ENV downloadlink https://github.com/adoptium/temurin8-binaries/releases/download/$JAVA_VERSION/$JAVA_PACKAGE_FILENAME
 
 # download java
 RUN wget --no-cookies -O /tmp/$JAVA_PACKAGE_FILENAME $downloadlink 

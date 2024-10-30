@@ -25,22 +25,23 @@ The following modules are installed in the image.
 
 ### Base Module
 
+- **java** 1.8.0_432
 - **nginx** 1.22.1
-- **git** 2.39.2
+- **git** 2.39.5
 - **curl** 7.88.1
 - **wget** 1.21.1
 - **nrm** 1.2.6
 - **ossutil** 1.7.17
 - **ttf-mscorefonts**
-- **go** 1.20
+- **go** 1.23.2
 - **mvn** 3.3.9
 - **python** 3.11.2
 - **pip3**
 - **venv**
-- **node** 18.13.0
-- **pnpm** 9.1.0
+- **node** 18.19.0
+- **pnpm** 9.12.0
 - **npm** 9.2.0
-- **yarn** 1.22.19
+- **yarn** 1.22.22
 - **certbot** 2.1.0
 - **n** 9.2.0
 - **tar** 1.34
@@ -53,10 +54,10 @@ The following modules are installed in the image.
 - **tree** 1.8.0
 - **crontab** 1.5.2
 - **rclone** 1.60.1
-- **apprise** 
+- **apprise** 1.2.0
 - **mysqldump** 10.19
-- **mc(Minio Client)** RELEASE.2023-11-10T21-37-17Z
-- **[webhook 2.8.0](https://github.com/adnanh/webhook)**
+- **mc(Minio Client)** RELEASE.2024-10-08T09-37-26Z
+- **[webhook 2.8.2](https://github.com/adnanh/webhook)**
 
 ### Other
 
