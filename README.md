@@ -25,6 +25,20 @@ docker pull funnyzak/java-nodejs-python-go-etc:java11
 docker pull funnyzak/java-nodejs-python-go-etc:java17
 ```
 
+#### China Mirror
+
+```bash
+
+# Pull the latest image
+docker pull registry.cn-beijing.aliyuncs.com/funnyzak/java-nodejs-python-go-etc:latest
+
+# Pull the Java 11 version
+docker pull registry.cn-beijing.aliyuncs.com/funnyzak/java-nodejs-python-go-etc:java11
+
+# Pull the Java 17 version
+docker pull registry.cn-beijing.aliyuncs.com/funnyzak/java-nodejs-python-go-etc:java17
+```
+
 ## Installed Modules
 
 The image includes the following modules:
