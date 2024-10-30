@@ -84,12 +84,6 @@ RUN curl https://dl.min.io/client/mc/release/linux-amd64/mc --create-dirs -o /op
 RUN chmod +x /opt/minio-binaries/mc
 RUN ln -s /opt/minio-binaries/mc /usr/local/bin
 
-# ossutil env
-ENV ALIYUN_OSS_ENDPOINT oss-cn-beijing-internal.aliyuncs.com
-ENV ALIYUN_OSS_AK_ID hello
-ENV ALIYUN_OSS_AK_SID world
-RUN ossutil config -e ${ALIYUN_OSS_ENDPOINT} -i ${ALIYUN_OSS_AK_ID} -k ${ALIYUN_OSS_AK_SID} -L CH
-
 # set shell variables for java installation
 ENV JAVA_VERSION jdk8u432-b06
 ENV JAVA_PACKAGE_FILENAME OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz
