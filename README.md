@@ -20,6 +20,9 @@ docker pull funnyzak/java-nodejs-python-go-etc:latest
 
 # Pull the Java 11 version
 docker pull funnyzak/java-nodejs-python-go-etc:java11
+
+# Pull the Java 17 version
+docker pull funnyzak/java-nodejs-python-go-etc:java17
 ```
 
 ## Installed Modules
