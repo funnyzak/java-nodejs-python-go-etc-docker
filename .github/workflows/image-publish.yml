@@ -28,8 +28,6 @@ on:
         required: false
         type: string
         default: 'Dockerfile'
-env:
-  IMAGE_REPOSITORY: funnyzak/java-nodejs-python-go-etc
 
 jobs:
   setup:
@@ -125,8 +123,8 @@ jobs:
             TAG=${{ needs.setup.outputs.TAG_NAME }}
           push: true
           tags: |
-            ${{ env.IMAGE_REPOSITORY }}:${{ needs.setup.outputs.TAG_NAME }}
-            registry.cn-beijing.aliyuncs.com/${{ env.IMAGE_REPOSITORY }}:${{ needs.setup.outputs.TAG_NAME }}
+            ${{ needs.setup.outputs.TAG_NAME }}
+            registry.cn-beijing.aliyuncs.com/${{ needs.setup.outputs.TAG_NAME }}
           platforms: |
             linux/amd64
 
