@@ -87,8 +87,8 @@ RUN chmod +x /opt/minio-binaries/mc
 RUN ln -s /opt/minio-binaries/mc /usr/local/bin
 
 # set shell variables for java installation
-ENV JAVA_VERSION jdk8u432-b06
-ENV JAVA_PACKAGE_FILENAME OpenJDK8U-jdk_x64_linux_hotspot_8u432b06.tar.gz
+ENV JAVA_VERSION jdk8u392-b08
+ENV JAVA_PACKAGE_FILENAME OpenJDK8U-jdk_x64_linux_hotspot_8u392b08.tar.gz
 
 ENV downloadlink https://github.com/adoptium/temurin8-binaries/releases/download/$JAVA_VERSION/$JAVA_PACKAGE_FILENAME
 
